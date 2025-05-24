@@ -34,7 +34,7 @@ docker-compose up  --build -d     # Start services
 - `.env` - Environment variables configuration file containing
 
 ## Summary
-When you run `docker-compose up --build -d`, the following happens:
+When you run `make up`, the following happens:
 
 1. Docker builds and starts all services defined in docker-compose.yml:
 
@@ -66,9 +66,26 @@ You can then:
 - Use SQLPad web interface on localhost:3000
 - Run dbt commands through the dbt service
 
-To stop all services, run `docker-compose down` which will:
+To stop all services, run `make stop` which will:
 - Stop all running containers
 - Remove containers and networks
 - Preserve persistent volume data
 
 
+## Solutions
+As you can see I have complicated the project a bit to make it more challenging and to show my seniority. Let me explain my proposed solution.
+
+I have created an application managed with docker-compose and as you can see it has three services `postgres` (the database), `dbt` the data management using python and [dbt](https://www.getdbt.com/) and `sqlpad` a client to do sql and visualizations over the database.
+
+Once the `make up` service is up you can access this client at `localhost:3000`.
+
+The **dbt** service will upload the `products.csv` and `orders.csv` csv in `dbt/seeds`.
+
+* It will also create a service that generates the `currency_rates` table and updates it every hour, you can see the python code that generates it in `dbt/hourly_currency_rate.py`.
+
+* The solution to the proposed sql queries as `dbt/models/silver/orders_full_information.sql` and as `dbt/models/silver/fixed_orders_full_information.sql`. As you can see the table that uses the ratios is a view, this means that it will give the price with the last rate obtained.
+
+* We can also see the proposed sql's in the table analysis:     
+    * `dbt/models/analysis/max_amount_orders_date.sql`
+    * `dbt/models/analysis/most_demanded_product.sql`
+    * `dbt/models/analysis/top_three_categories_by_demand.sql`
