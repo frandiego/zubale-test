@@ -1,0 +1,88 @@
+version: 2
+
+sources:
+  - name: dbt
+    description: "Raw data"
+    tables:
+      - name: products
+        description: "Product catalog data"
+        columns:
+          - name: id
+            description: "Unique product identifier"
+            data_type: integer
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: "Product name"
+            data_type: string
+            tests:
+              - not_null
+          - name: category
+            description: "Product category"
+            data_type: string
+            tests:
+              - not_null
+          - name: price
+            description: "Product price"
+            data_type: float
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0
+      - name: quantity
+        description: "Product inventory data"
+        columns:
+          - name: id
+            description: "Unique inventory record identifier"
+            data_type: integer
+            tests:
+              - unique
+              - not_null
+          - name: product_id
+            description: "Reference to product ID"
+            data_type: integer
+            tests:
+              - not_null
+              - relationships:
+                  to: source('dbt', 'products')
+                  field: id
+          - name: quantity
+            description: "Inventory quantity"
+            data_type: float
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0
+          - name: create_date
+            description: "Date when inventory record was created"
+            data_type: string
+            tests:
+              - not_null
+      - name: currency_rates
+        description: "Currency Rates Values"
+        columns:
+          - name: id
+            description: "Unique inventory record identifier"
+            data_type: integer
+            tests:
+              - unique
+              - not_null
+          - name: base_currency
+            description: "Reference of the Base Currency"
+            data_type: string
+            tests:
+              - not_null
+          - name: currency
+            description: "Reference of the Currency"
+            data_type: string
+            tests:
+              - not_null
+          - name: rate
+            description: "Rate of Currency/BaseCurrency"
+            data_type: float
+          - name: fetched_at
+            description: "Date when inventory record was created"
+            data_type: timestamp
+            tests:
+              - not_null
