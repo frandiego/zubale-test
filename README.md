@@ -77,9 +77,9 @@ As you can see I have complicated the project a bit to make it more challenging 
 
 I have created an application managed with docker-compose and as you can see it has three services `postgres` (the database), `dbt` the data management using python and [dbt](https://www.getdbt.com/) and `sqlpad` a client to do sql and visualizations over the database.
 
-Once the `make up` service is up you can access this client at [localhost:3000][localhost:3000]
+Once the `make up` service is up you can access this client at [localhost:3000](localhost:3000)
 
-The **dbt** service will upload the `products.csv` and `orders.csv` csv in [dbt/seeds][./dbt/seeds]
+The **dbt** service will upload the `products.csv` and `orders.csv` csv in [dbt/seeds](./dbt/seeds)g
 
 * It will also create a service that generates the `currency_rates` table and updates it every hour, you can see the python code that generates it in `dbt/hourly_currency_rate.py`.
 
