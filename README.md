@@ -86,6 +86,7 @@ The **dbt** service will upload the `products.csv` and `orders.csv` csv in `dbt/
 * The solution to the proposed sql queries as `dbt/models/silver/orders_full_information.sql` and as `dbt/models/silver/fixed_orders_full_information.sql`. As you can see the table that uses the ratios is a view, this means that it will give the price with the last rate obtained.
 
 * We can also see the proposed sql's in the table analysis:     
-    * `dbt/models/analysis/max_amount_orders_date.sql`
-    * `dbt/models/analysis/most_demanded_product.sql`
-    * `dbt/models/analysis/top_three_categories_by_demand.sql`
+    * [dbt/models/analysis/max_amount_orders_date.sql](./dbt/models/analysis/max_amount_orders_date.sql)
+    * [dbt/models/analysis/most_demanded_product.sql](./dbt/models/analysis/most_demanded_product.sql)
+    * [dbt/models/analysis/top_three_categories_by_demand.sql](./dbt/models/analysis/top_three_categories_by_demand.sql)
+
