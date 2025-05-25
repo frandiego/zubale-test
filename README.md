@@ -100,3 +100,9 @@ I would use the `Google Composer`  (airflow in gcp) to orchestrate the different
 * I would create dags for real-time, near-real-time and batch ingestion processes.
 * I would create sensors to generate alerts and add events.
 * I would generate a database using oltp type dbt with medallion structure (bronze, silver and gold schemas).
+
+### AI
+I would create a service to implement piepelines with ai using `Vertex` the Google MLops service that allows to implement this kind of pipelines, even in real time. But my experience tells me that it is very expensive (in resources and cloud billing) this kind of solutions so I would go to third party services to solve them. For example:
+* I would solve the `identity resolution` problem using pipelines provided by [segment](https://segment.com/blog/identity-resolution/), 
+* I would apply real-time recommendation system using [recombee](https://www.recombee.com/)
+* I would add artificial intelligence to the dashboards using [Looker](https://cloud.google.com/looker?hl=en) which now includes artificial intelligence to make dashboards.
