@@ -90,3 +90,7 @@ The **dbt** service will upload the `products.csv` and `orders.csv` csv in [dbt/
     * [dbt/models/analysis/most_demanded_product.sql](./dbt/models/analysis/most_demanded_product.sql)
     * [dbt/models/analysis/top_three_categories_by_demand.sql](./dbt/models/analysis/top_three_categories_by_demand.sql)
 
+### More insights
+* We can analyze **seasonality**, study sales over time, see which day of the week sells the most, which month sells the most, etc.
+* Using `orders` and `products` data we can see which products are sold together and be able to make offers for cross-selling doing **market-basket analysis**
+* Using `orders` and `products`  data we can make a **recommendation system** based on collaborative filtering algorithm, this is very useful especially in online stores.
