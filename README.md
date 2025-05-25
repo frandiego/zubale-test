@@ -90,7 +90,13 @@ The **dbt** service will upload the `products.csv` and `orders.csv` csv in [dbt/
     * [dbt/models/analysis/most_demanded_product.sql](./dbt/models/analysis/most_demanded_product.sql)
     * [dbt/models/analysis/top_three_categories_by_demand.sql](./dbt/models/analysis/top_three_categories_by_demand.sql)
 
-### More insights
+### More insights
 * We can analyze **seasonality**, study sales over time, see which day of the week sells the most, which month sells the most, etc.
 * Using `orders` and `products` data we can see which products are sold together and be able to make offers for cross-selling doing **market-basket analysis**
 * Using `orders` and `products`  data we can make a **recommendation system** based on collaborative filtering algorithm, this is very useful especially in online stores.
+
+### ETL
+I would use the `Google Composer`  (airflow in gcp) to orchestrate the different dags that generate the database. In principle I have no information about the target database but :
+* I would create dags for real-time, near-real-time and batch ingestion processes.
+* I would create sensors to generate alerts and add events.
+* I would generate a database using oltp type dbt with medallion structure (bronze, silver and gold schemas).
