@@ -34,7 +34,7 @@ docker-compose up  --build -d     # Start services
 - `.env` - Environment variables configuration file containing
 
 ## Summary
-When you run `docker-compose up --build -d`, the following happens:
+When you run `make up`, the following happens:
 
 1. Docker builds and starts all services defined in docker-compose.yml:
 
@@ -66,9 +66,43 @@ You can then:
 - Use SQLPad web interface on localhost:3000
 - Run dbt commands through the dbt service
 
-To stop all services, run `docker-compose down` which will:
+To stop all services, run `make stop` which will:
 - Stop all running containers
 - Remove containers and networks
 - Preserve persistent volume data
 
 
+## Solutions
+As you can see I have complicated the project a bit to make it more challenging and to show my seniority. Let me explain my proposed solution.
+
+I have created an application managed with docker-compose and as you can see it has three services `postgres` (the database), `dbt` the data management using python and [dbt](https://www.getdbt.com/) and `sqlpad` a client to do sql and visualizations over the database.
+
+Once the `make up` service is up you can access this client at `localhost:3000`
+
+The **dbt** service will upload the `products.csv` and `orders.csv` csv in [dbt/seeds](./dbt/seeds)
+
+* It will also create a service that generates the `currency_rates` table and updates it every hour, you can see the python code that generates it in `dbt/hourly_currency_rate.py`.
+
+* The solution to the proposed sql queries as `dbt/models/silver/orders_full_information.sql` and as `dbt/models/silver/fixed_orders_full_information.sql`. As you can see the table that uses the ratios is a view, this means that it will give the price with the last rate obtained.
+
+* We can also see the proposed sql's in the table analysis:     
+    * [dbt/models/analysis/max_amount_orders_date.sql](./dbt/models/analysis/max_amount_orders_date.sql)
+    * [dbt/models/analysis/most_demanded_product.sql](./dbt/models/analysis/most_demanded_product.sql)
+    * [dbt/models/analysis/top_three_categories_by_demand.sql](./dbt/models/analysis/top_three_categories_by_demand.sql)
+
+### More insights
+* We can analyze **seasonality**, study sales over time, see which day of the week sells the most, which month sells the most, etc.
+* Using `orders` and `products` data we can see which products are sold together and be able to make offers for cross-selling doing **market-basket analysis**
+* Using `orders` and `products`  data we can make a **recommendation system** based on collaborative filtering algorithm, this is very useful especially in online stores.
+
+### ETL
+I would use the `Google Composer`  (airflow in gcp) to orchestrate the different dags that generate the database. In principle I have no information about the target database but :
+* I would create dags for real-time, near-real-time and batch ingestion processes.
+* I would create sensors to generate alerts and add events.
+* I would generate a database using oltp type dbt with medallion structure (bronze, silver and gold schemas).
+
+### AI
+I would create a service to implement piepelines with ai using `Vertex` the Google MLops service that allows to implement this kind of pipelines, even in real time. But my experience tells me that it is very expensive (in resources and cloud billing) this kind of solutions so I would go to third party services to solve them. For example:
+* I would solve the `identity resolution` problem using pipelines provided by [segment](https://segment.com/blog/identity-resolution/), 
+* I would apply real-time recommendation system using [recombee](https://www.recombee.com/)
+* I would add artificial intelligence to the dashboards using [Looker](https://cloud.google.com/looker?hl=en) which now includes artificial intelligence to make dashboards.
