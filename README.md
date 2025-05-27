@@ -127,3 +127,17 @@ We can also see the **currency_rates** table which is updated every hour as well
 
 #### Table fixed_order_full_information
 ![table_products](./pictures/fixed_order_full_information.png)
+
+
+We can also view the result of the analysis queries
+
+#### Table max_amount_orders
+![table_products](./pictures/max_amount_orders.png)
+
+
+#### Table most_demanded_product
+![table_products](./pictures/most_demanded_product.png)
+
+
+#### Table top_three_categories_by_demand
+![table_products](./pictures/top_three_categories_by_demand.png)
