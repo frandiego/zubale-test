@@ -115,3 +115,15 @@ We can see the result of generating the service and see the orders and products 
 
 #### Table orders
 ![table_products](./pictures/orders.png)
+
+
+We can also see the **currency_rates** table which is updated every hour as well as the **order_full_information** table and the **fixed_order_full_information** view.
+
+#### Table currency_rates
+![table_products](./pictures/currency_rates.png)
+
+#### Table order_full_information
+![table_products](./pictures/order_full_information.png)
+
+#### Table fixed_order_full_information
+![table_products](./pictures/fixed_order_full_information.png)
