@@ -106,3 +106,12 @@ I would create a service to implement piepelines with ai using `Vertex` the Goog
 * I would solve the `identity resolution` problem using pipelines provided by [segment](https://segment.com/blog/identity-resolution/), 
 * I would apply real-time recommendation system using [recombee](https://www.recombee.com/)
 * I would add artificial intelligence to the dashboards using [Looker](https://cloud.google.com/looker?hl=en) which now includes artificial intelligence to make dashboards.
+
+### Output in images
+We can see the result of generating the service and see the orders and products tables (the provided csv) that have been created using `dbt seed`.
+
+#### Table products
+![table_products](./pictures/products.png)
+
+#### Table orders
+![table_products](./pictures/orders.png)
