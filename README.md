@@ -106,3 +106,38 @@ I would create a service to implement piepelines with ai using `Vertex` the Goog
 * I would solve the `identity resolution` problem using pipelines provided by [segment](https://segment.com/blog/identity-resolution/), 
 * I would apply real-time recommendation system using [recombee](https://www.recombee.com/)
 * I would add artificial intelligence to the dashboards using [Looker](https://cloud.google.com/looker?hl=en) which now includes artificial intelligence to make dashboards.
+
+### Output in images
+We can see the result of generating the service and see the orders and products tables (the provided csv) that have been created using `dbt seed`.
+
+#### Table products
+![table_products](./pictures/products.png)
+
+#### Table orders
+![table_products](./pictures/orders.png)
+
+
+We can also see the **currency_rates** table which is updated every hour as well as the **order_full_information** table and the **fixed_order_full_information** view.
+
+#### Table currency_rates
+![table_products](./pictures/currency_rates.png)
+
+#### Table order_full_information
+![table_products](./pictures/order_full_information.png)
+
+#### Table fixed_order_full_information
+![table_products](./pictures/fixed_order_full_information.png)
+
+
+We can also view the result of the analysis queries
+
+#### Table max_amount_orders
+![table_products](./pictures/max_amount_orders.png)
+
+
+#### Table most_demanded_product
+![table_products](./pictures/most_demanded_product.png)
+
+
+#### Table top_three_categories_by_demand
+![table_products](./pictures/top_three_categories_by_demand.png)
